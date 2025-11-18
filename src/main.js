@@ -37,3 +37,4 @@ console.log(indexSellers);
 console.log(indexCustomers);
 console.log(data);
 console.log(cards);
+console.log('hell0');

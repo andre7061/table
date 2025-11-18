@@ -33,7 +33,7 @@ const getCards = (data) =>
 
 const cards = getCards(data.purchase_records);
 
-// console.log(indexSellers);
-// console.log(indexCustomers);
-// console.log(data);
-// console.log(cards);
+console.log(indexSellers);
+console.log(indexCustomers);
+console.log(data);
+console.log(cards);

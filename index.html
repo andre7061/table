@@ -1,21 +1,65 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/table/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>vanilla</title>
-    <script type="module" crossorigin src="/table/assets/index-D5wXDmDt.js"></script>
-    <link rel="stylesheet" crossorigin href="/table/assets/index-COXbYC5B.css">
-  </head>
-  <body>
-    <div id="app">
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="/table/vite.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>smart</title>
+  <script type="module" crossorigin src="/table/assets/index-KNeMBkeE.js"></script>
+  <link rel="stylesheet" crossorigin href="/table/assets/index-8av-wCgz.css">
+</head>
+
+<body>
+  <div id="app">
+    <header>
       <div class="grid grid_title">
-        <h2>Data</h2>
-        <h2>Customer</h2>
-        <h2>Seller</h2>
-        <h2>Total</h2>
+        <div class="grid__item-title">
+          <h2>Data</h2>
+          <button class="btn-arrow">&#9650;&#9660;</button>
+        </div>
+        <div class="grid__item-title">
+          <h2>Customer</h2>
+        </div>
+        <div class="grid__item-title">
+          <h2>Seller</h2>
+        </div>
+        <div class="grid__item-title">
+          <h2>Total</h2>
+          <button class="btn-arrow">&#9650;&#9660;</button>
+        </div>
+
       </div>
+    </header>
+    <main>
+      <div class="container"></div>
+    </main>
+    <footer>
+      <div class="footer__conteiner">
+        <button class="btn prev-btn">&#8592;</button>
+        <div class="container-btn"></div>
+        <button class="btn next-btn"> &#8594;</button>
+        <label for="page-select">
+          <select name="page" id="page-select">
+            <option value="5">5</option>
+            <option value="10">10</option>
+            <option value="15">15</option>
+            <option value="20">20</option>
+          </select>
+        </label>
+
+      </div>
+    </footer>
+  </div>
+
+  <template id="temlate-card">
+    <div class="grid">
+      <div data-name="data" class="grid__item"></div>
+      <div data-name="customer" class="grid__item"></div>
+      <div data-name="seller" class="grid__item"></div>
+      <div data-name="total" class="grid__item"></div>
     </div>
-  </body>
+  </template>
+</body>
+
 </html>

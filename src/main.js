@@ -1,40 +1,38 @@
 import { data } from './data/data';
 import './style.css';
-
-const getIndexMap = (data, value, key) =>
-  data[value].reduce((acc, item) => {
-    acc[item[key]] = {
-      ...item,
-      fullName: `${item.first_name} ${item.last_name}`,
-    };
-    return acc;
-  }, {});
-
-const indexSellers = getIndexMap(data, 'sellers', 'id');
-const indexCustomers = getIndexMap(data, 'customers', 'id');
-
-const getCards = (data) =>
-  data.reduce((acc, card) => {
-    const customer = indexCustomers[card.customer_id];
-    const seller = indexSellers[card.seller_id];
-    if (customer && seller) {
-      acc.push({
-        ['date']: card.date,
-        ['customer']: customer.fullName,
-        ['seller']: seller.fullName,
-        ['total']: card.total_amount,
-      });
-    } else {
-      console.warn('Missing customer or seller for card:', card);
-    }
-
-    return acc;
-  }, []);
+import { renderTable } from './components/table';
+import { getCards } from './util/util';
+import { elements } from './constants/elements';
+import { state, calculateTotalPages } from './components/state';
+import { prevPage, nextPage } from './components/pagination';
 
 const cards = getCards(data.purchase_records);
 
-console.log(indexSellers);
-console.log(indexCustomers);
-console.log(data);
-console.log(cards);
-console.log('hell0');
+//  рендер таблицы
+
+const bindEvents = () => {
+  elements.pageNumbers.addEventListener('click', (e) => {
+    if (e.target.classList.contains('btn')) {
+      state.currentPage = Number(e.target.textContent);
+      renderTable();
+    }
+  });
+  elements.pageSelect.addEventListener('change', (e) => {
+    state.pageSize = Number(e.target.value);
+    state.currentPage = 1;
+    renderTable();
+  });
+  elements.prevBtn.addEventListener('click', prevPage);
+  elements.nextBtn.addEventListener('click', nextPage);
+};
+
+function initTablePagination(data) {
+  state.data = data;
+  calculateTotalPages();
+  renderTable();
+  bindEvents();
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  initTablePagination(cards);
+});
